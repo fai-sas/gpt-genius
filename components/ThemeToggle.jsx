@@ -1,4 +1,30 @@
+'use client'
+
+import { BsMoonFill, BsSunFill } from 'react-icons/bs'
+import { useState } from 'react'
+
+const themes = {
+  winter: 'winter',
+  dracula: 'dracula',
+}
+
 const ThemeToggle = () => {
-  return <div className=' btn btn-primary btn-sm'>Toggle</div>
+  const [theme, setTheme] = useState(themes.winter)
+
+  const toggleTheme = () => {
+    const newTheme = theme === themes.winter ? themes.dracula : themes.winter
+    document.documentElement.setAttribute('data-theme', newTheme)
+    setTheme(newTheme)
+  }
+
+  return (
+    <button onClick={toggleTheme} className='btn btn-sm btn-outline'>
+      {theme === 'winter' ? (
+        <BsMoonFill className='w-4 h-4 ' />
+      ) : (
+        <BsSunFill className='w-4 h-4' />
+      )}
+    </button>
+  )
 }
 export default ThemeToggle
